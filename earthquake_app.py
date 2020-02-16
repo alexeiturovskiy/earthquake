@@ -67,6 +67,6 @@ list_box_1 = Listbox(main_window, listvariable=place)
 list_box_1.grid(column=0, row=8, columnspan=2, sticky=(W, E))
 # ttk.Label(main_window, textvariable=place).grid(column=0, row=8, sticky=(W))
 
-ttk.Button(main_window, text="Get earthquake info", command=get_earth_info).grid(column=1, row=7)
+ttk.Button(main_window, text="Get earthquake info", command=get_earth_info).grid(column=1, row=7, sticky=(W,E))
 
 root.mainloop()
