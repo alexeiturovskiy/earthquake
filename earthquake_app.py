@@ -5,7 +5,6 @@ from tkinter import ttk
 
 def get_earth_info(*args):
     try:
-        #place_list = []
         start_time = str(starttime.get())
         end_time = str(endtime.get())
         lati = str(latitude.get())
@@ -19,8 +18,6 @@ def get_earth_info(*args):
         for item in data["features"]:
             text_box_place.insert("end", item["properties"]["title"])
             text_box_place.insert("end", "\n")
-            #place_list.append(item["properties"]["place"])
-        #place.set(place_list)
     except ValueError:
         pass
 
@@ -68,9 +65,6 @@ param_minmagnitude.grid(column=1, row=6, sticky=(W))
 ttk.Label(main_window, text="Earthquake place and magnitude").grid(column=0, row=8, columnspan=2)
 text_box_place = Text(main_window, width=50, height=10)
 text_box_place.grid(column=0, row=9, columnspan=2)
-#list_box_1 = Listbox(main_window, listvariable=place)
-#list_box_1.grid(column=0, row=8, columnspan=2, sticky=(W, E))
-# ttk.Label(main_window, textvariable=place).grid(column=0, row=8, sticky=(W))
 
 ttk.Button(main_window, text="Get earthquake info", command=get_earth_info).grid(column=0, row=7, columnspan=2)
 
