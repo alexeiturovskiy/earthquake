@@ -5,12 +5,12 @@ from tkinter import ttk
 
 def get_earth_info(*args):
     try:
-        start_time = str(starttime.get())
-        end_time = str(endtime.get())
-        lati = str(latitude.get())
-        longi = str(longitude.get())
-        max_rad = str(maxradiuskm.get())
-        min_mag = str(minmagnitude.get())
+        start_time = starttime.get()
+        end_time = endtime.get()
+        lati = latitude.get()
+        longi = longitude.get()
+        max_rad = maxradiuskm.get()
+        min_mag = minmagnitude.get()
         url = "https://earthquake.usgs.gov/fdsnws/event/1/query?"
         parameters = {"format": "geojson", "starttime": start_time, "endtime": end_time, "latitude": lati, "longitude": longi, "maxradiuskm": max_rad, "minmagnitude": min_mag}
         response = requests.get(url, headers = {"Accept": "application/json"}, params=parameters)
@@ -62,9 +62,12 @@ ttk.Label(main_window, text="Enter min magnitude").grid(column=0, row=6, sticky=
 param_minmagnitude = ttk.Entry(main_window, width=10, textvariable=minmagnitude)
 param_minmagnitude.grid(column=1, row=6, sticky=(W))
 
-ttk.Label(main_window, text="Earthquake place and magnitude").grid(column=0, row=8, columnspan=2)
+ttk.Label(main_window, text="Earthquake magnitude and place").grid(column=0, row=8, columnspan=2)
 text_box_place = Text(main_window, width=50, height=10)
 text_box_place.grid(column=0, row=9, columnspan=2)
+scroll_bar = ttk.Scrollbar(main_window, orient=VERTICAL, command=text_box_place.yview)
+scroll_bar.grid(column=1, row=9, sticky=(N,E,S))
+text_box_place.configure(yscrollcommand=scroll_bar.set)
 
 ttk.Button(main_window, text="Get earthquake info", command=get_earth_info).grid(column=0, row=7, columnspan=2)
 
